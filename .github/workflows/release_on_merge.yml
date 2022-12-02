@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Fetch Git entire history for all branches and tags
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           fetch-depth: 0
           ref: ${{ github.event.pull_request.base.ref }}
@@ -28,9 +28,6 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
-
-      - name: Run Semantic Release
-        run: npx semantic release
     
   publish:
     runs-on: ubuntu-latest
