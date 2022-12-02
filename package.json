@@ -1,0 +1,11 @@
+{
+  "name": "Job-Searcher-Extension",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/SayyidMuhammad878/Job-Searcher-Extension",
+  "author": "MuhammadJufri <sayyidmuhammad878@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "semantic-release": "^19.0.5"
+  }
+}
