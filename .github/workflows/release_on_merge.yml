@@ -1,0 +1,31 @@
+name: Release New Version
+
+# Triggers the workflow when a push happens
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    name: Release
+
+    steps:
+      - name: Fetch Git entire history for all branches and tags
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.base.ref }}
+
+      - name: Use Node v18
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Semantic Release
+        run: nxp semantic release
