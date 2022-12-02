@@ -37,8 +37,10 @@ jobs:
     if: ${{ github.ref == 'refs/heads/main' }}
     needs: [release]
     steps:
-      - uses: actions:checkout@v2
+      - uses: actions:checkout@v3
       - name: Use Node v18
-      - uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
       - run: npm ci
       - run: npm run semantic-release
