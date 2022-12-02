@@ -1,43 +1,43 @@
-name: Release on merge
+name: Node.js CI
 
-# Triggers the workflow when a push happens
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
     branches: '*'
 
 jobs:
-  release:
-    runs-on: ubuntu-latest
+  quality:
 
-    name: Release
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x, 15.x]
+        os: [ubuntu-latest, windows-latest]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-      - name: Fetch Git entire history for all branches and tags
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-          ref: ${{ github.event.pull_request.base.ref }}
-
-      - name: Use Node v18
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-
-      - name: Install Dependencies
-        run: npm install
-    
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm test
+  
   publish:
     runs-on: ubuntu-latest
     if: ${{ github.ref == 'refs/heads/main' }}
-    needs: [release]
-    steps:
-      - uses: actions:checkout@v3
-      - name: Use Node v18
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - run: npm ci
-      - run: npm run semantic-release
+    needs: [quality]
+    steps: 
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm ci
+    - run: npm run semantic-release
+      env: 
+        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
