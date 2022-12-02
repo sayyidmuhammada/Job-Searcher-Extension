@@ -28,4 +28,4 @@ jobs:
         run: npm install
 
       - name: Run Semantic Release
-        run: nxp semantic release
+        run: npx semantic release
