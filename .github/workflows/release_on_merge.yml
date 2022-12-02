@@ -1,10 +1,12 @@
-name: Release New Version
+name: Release on merge
 
 # Triggers the workflow when a push happens
 on:
   push:
     branches:
       - main
+  pull_request:
+    branches: '*'
 
 jobs:
   release:
@@ -29,3 +31,14 @@ jobs:
 
       - name: Run Semantic Release
         run: npx semantic release
+    
+  publish:
+    runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/main' }}
+    needs: [release]
+    steps:
+      - uses: actions:checkout@v2
+      - name: Use Node v18
+      - uses: actions/setup-node@v2
+      - run: npm ci
+      - run: npm run semantic-release
