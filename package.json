@@ -6,10 +6,12 @@
   "directories": {
     "doc": "docs"
   },
-  "scripts": {},
+  "scripts": {
+    "semantic-release": "semantic-release"
+  },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SayyidMuhammad878/Job-Searcher-Extension.git"
+    "url": "https://github.com/SayyidMuhammad878/Job-Searcher-Extension.git"
   },
   "author": "Sayyid Muhammad A",
   "license": "ISC",
@@ -26,5 +28,8 @@
   "dependencies": {
     "semantic-release": "^19.0.5",
     "semantic-release-cli": "^5.4.4"
+  },
+  "devDependencies": {
+    "semantic-release": "^19.0.5"
   }
 }
