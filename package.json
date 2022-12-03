@@ -19,12 +19,6 @@
     "url": "https://github.com/SayyidMuhammad878/Job-Searcher-Extension/issues"
   },
   "homepage": "https://github.com/SayyidMuhammad878/Job-Searcher-Extension#readme",
-  "release": {
-    "branches": [
-      "master",
-      "next"
-    ]
-  },
   "dependencies": {
     "semantic-release": "^19.0.5",
     "semantic-release-cli": "^5.4.4"
