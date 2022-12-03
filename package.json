@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/SayyidMuhammad878/Job-Searcher-Extension/issues"
   },
-  "homepage": "https://github.com/SayyidMuhammad878/Job-Searcher-Extension#readme"
+  "homepage": "https://github.com/SayyidMuhammad878/Job-Searcher-Extension#readme",
+  "release": {
+    "branches": ["master", "next"]
+  }
 }
