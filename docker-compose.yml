@@ -1,0 +1,37 @@
+version: "3"
+
+services:
+  db:
+    container_name: db
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-3muhammad3}
+      POSTGRES_DB: ${POSTGRES_DB:-jse_server}
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "5423:5423"
+    networks:
+      - db
+    restart: unless-stopped
+  api:
+    container_name: api
+    build:
+      context: ./packages/jse-backend/
+      dockerfile: Dockerfile.dev # on move to prod, update this
+    volumes:
+      - /packages/jse-backend/node_modules
+      - ./packages/jse-backend:/jse-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    networks:
+      - db
+    restart: unless-stopped
+
+networks:
+  db:
+    driver: bridge

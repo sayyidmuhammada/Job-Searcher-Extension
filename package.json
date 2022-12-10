@@ -7,7 +7,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "docker:build": "docker-compose -p job-searcher-extension build",
+    "docker:build": "docker-compose -p job-searcher-extension build --no-cache",
     "docker:up": "docker-compose -p job-searcher-extension up",
     "docker:down": "docker-compose -p job-searcher-extension down"
   },

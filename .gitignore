@@ -1,4 +1,5 @@
 node_modules
+pgdata
 
 /packages/jse-backend/node_modules
 /packages/jse-frontend/node_modules
