@@ -12,24 +12,35 @@ services:
     volumes:
       - ./pgdata:/var/lib/postgresql/data
     ports:
-      - "5423:5423"
+      - 5423:5423
     networks:
       - db
     restart: unless-stopped
-  api:
-    container_name: api
+  backend:
+    container_name: backend
     build:
       context: ./packages/jse-backend/
       dockerfile: Dockerfile.dev # on move to prod, update this
     volumes:
-      - /packages/jse-backend/node_modules
       - ./packages/jse-backend:/jse-backend
     ports:
-      - "8080:8080"
+      - 8080:8080
     depends_on:
       - db
     networks:
       - db
+    restart: unless-stopped
+  frontend:
+    container_name: frontend
+    build:
+      context: ./packages/jse-frontend/
+      dockerfile: Dockerfile.dev # on move to prod, update this
+    volumes:
+      - ./packages/jse-frontend:/jse-frontend
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
     restart: unless-stopped
 
 networks:
