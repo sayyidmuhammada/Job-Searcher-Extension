@@ -1,5 +1,6 @@
-FROM node:latest
-WORKDIR /app
+FROM node:16
+WORKDIR /packages/jse-frontend
+RUN rm -rf node_modules .next yarn.lock
 COPY ./package.json ./
 RUN yarn install
 COPY . .

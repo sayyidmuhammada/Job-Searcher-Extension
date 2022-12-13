@@ -7,18 +7,23 @@
     "doc": "docs"
   },
   "scripts": {
+    "setup-docker": "yarn run docker:build && yarn run docker:up",
+    "setup": "bash scripts/install.sh",
+    "build-all": "bash scripts/build-all.sh",
+    "lint": "",
+    "clean": "bash scripts/clean.sh",
     "docker:build": "docker-compose -p job-searcher-extension build --no-cache",
-    "docker:up": "docker-compose -p job-searcher-extension up",
+    "docker:up": "docker-compose -p job-searcher-extension up -d",
     "docker:down": "docker-compose -p job-searcher-extension down"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/SayyidMuhammad878/Job-Searcher-Extension.git"
+    "url": "https://github.com/SayyidMuhamadA/Job-Searcher-Extension.git"
   },
   "author": "Sayyid Muhammad A",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SayyidMuhammad878/Job-Searcher-Extension/issues"
+    "url": "https://github.com/SayyidMuhamadA/Job-Searcher-Extension/issues"
   },
-  "homepage": "https://github.com/SayyidMuhammad878/Job-Searcher-Extension#readme"
+  "homepage": "https://github.com/SayyidMuhamadA/Job-Searcher-Extension#readme"
 }

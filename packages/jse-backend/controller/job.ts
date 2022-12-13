@@ -1,4 +1,4 @@
-import jobService from '../service/job';
+import jobService from "../service/job";
 
 class JobController {
   async createJob(jobData: any) {
@@ -6,7 +6,7 @@ class JobController {
       const job = await jobService.createJob(jobData);
       return job;
     } catch (error) {
-      console.error(error)
+      console.error(error);
       return;
     }
   }
@@ -15,7 +15,7 @@ class JobController {
       const data = await jobService.fetchJob();
       return data;
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   }
 }

@@ -1,8 +1,8 @@
-import jobDAO from '../dao/job';
+import jobDAO from "../dao/job";
 
 class JobService {
   createJob(jobData: any) {
-    return jobDAO.createJob(jobData)
+    return jobDAO.createJob(jobData);
   }
   fetchJob() {
     return jobDAO.fetchJob();

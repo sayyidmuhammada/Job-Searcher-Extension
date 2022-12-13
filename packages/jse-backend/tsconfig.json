@@ -1,17 +1,17 @@
 {
   "compilerOptions": {
-    "target": "es2016",       
-    "module": "commonjs",    
-    "rootDir": "./",       
-    "sourceMap": true,  
-    "forceConsistentCasingInFileNames": true,     
+    "target": "es2016",
+    "module": "commonjs",
+    "rootDir": "./",
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "strict": true,                      
-    "noImplicitAny": true,          
-    "strictNullChecks": true,      
-    "strictPropertyInitialization": true,     
-    "noImplicitThis": true,             
-    "alwaysStrict": true,          
-    "skipLibCheck": true          
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "skipLibCheck": true
   }
 }
