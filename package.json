@@ -2,7 +2,6 @@
   "name": "@sayyid_muhammad_a/job-searcher-extension",
   "version": "0.0.0-development",
   "description": "",
-  "main": "index.js",
   "directories": {
     "doc": "docs"
   },
@@ -21,15 +20,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/SayyidMuhamadA/Job-Searcher-Extension.git"
+    "url": "https://github.com/sayyidmuhammada/Job-Searcher-Extension.git"
   },
   "author": "Sayyid Muhammad A",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/SayyidMuhamadA/Job-Searcher-Extension/issues"
+    "url": "https://github.com/sayyidmuhammada/Job-Searcher-Extension/issues"
   },
-  "homepage": "https://github.com/SayyidMuhamadA/Job-Searcher-Extension#readme",
   "dependencies": {
     "concurrently": "^7.6.0"
   }
+  "homepage": "https://github.com/sayyidmuhammada/Job-Searcher-Extension#readme"
 }
