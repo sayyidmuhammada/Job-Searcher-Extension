@@ -2,7 +2,6 @@
   "name": "@sayyid_muhammad_a/job-searcher-extension",
   "version": "0.0.0-development",
   "description": "",
-  "main": "index.js",
   "directories": {
     "doc": "docs"
   },
