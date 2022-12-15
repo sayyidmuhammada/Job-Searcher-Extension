@@ -1,10 +1,11 @@
-import { JobsResult } from "./types";
-import express from "express";
-import { scrapeAllJobs, scrapeJobDetail } from "jse-jobs-scraper";
-import registerRoute from "./routes/register";
-import jobController from "./controller/job";
-import cors from "cors";
-import dotenv from "dotenv";
+import express from 'express';
+import { scrapeAllJobs, scrapeJobDetail } from 'jse-jobs-scraper';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import registerRoute from './routes/register';
+import jobController from './controller/job';
+import { JobsResult } from './types';
+
 const app = express();
 dotenv.config();
 
@@ -25,16 +26,16 @@ function getAllJobs() {
     jobController.fetchJob().then((res) => {
       if (!res) return;
       jobsFromDB = res;
-      console.log("Successfully getting data from DB");
+      console.log('Successfully getting data from DB');
     });
 
     scrapeAllJobs(
-      "https://www.indeed.com/jobs?q=Front+end+engineer&sc=0kf%3Ajt%28internship%29%3B",
-      true
+      'https://www.indeed.com/jobs?q=Front+end+engineer&sc=0kf%3Ajt%28internship%29%3B',
+      process.env.USE_DOCKER === "false" ? false : true
     ).then((res) => {
       result = res;
       jobsFromDB = res;
-      console.log("Done!", res);
+      console.log('Done!', res);
       pushAllJobsToDB(res);
     });
   } catch (err) {
@@ -52,18 +53,18 @@ function pushAllJobsToDB(jobsData: JobsResult[]) {
 }
 getAllJobs();
 
-app.use("/register", registerRoute);
+app.use('/register', registerRoute);
 
-app.get("/jobsIndeed/", (req, res) => {
+app.get('/jobsIndeed/', (req, res) => {
   res.send(result.length !== 0 ? result : jobsFromDB);
 });
 
-app.get("/jobsIndeed/detail/:jobDetailId", (req, res) => {
+app.get('/jobsIndeed/detail/:jobDetailId', (req, res) => {
   console.log(req.params.jobDetailId);
-  console.log("Start to scrape the job detail");
+  console.log('Start to scrape the job detail');
   scrapeJobDetail(req.params.jobDetailId).then((res) => {
     scrapeDetailResult = res;
-    console.log("Done!");
+    console.log('Done!');
   });
   if (Object.keys(scrapeDetailResult).length !== 0) {
     res.send(scrapeDetailResult);
@@ -74,6 +75,6 @@ app.get("/jobsIndeed/detail/:jobDetailId", (req, res) => {
   }
 });
 
-app.get("/", (req, res) => {
-  res.send("Welcome to Job Searcher Extension Backend");
+app.get('/', (req, res) => {
+  res.send('Welcome to Job Searcher Extension Backend');
 });
