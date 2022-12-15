@@ -12,7 +12,7 @@
     "lint": "bash scripts/lint.sh",
     "run-frontend": "cd packages/jse-frontend && yarn run dev",
     "run-backend": "cd packages/jse-backend && yarn run dev",
-    "run-all": "concurrently \"yarn run-frontend\" \"yarn run-backend\"",
+    "start": "concurrently \"yarn run-frontend\" \"yarn run-backend\"",
     "clean": "bash scripts/clean.sh",
     "docker:build": "docker-compose -p job-searcher-extension build --no-cache",
     "docker:up": "docker-compose -p job-searcher-extension up -d",
