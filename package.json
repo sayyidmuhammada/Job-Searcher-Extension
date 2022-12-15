@@ -9,8 +9,11 @@
   "scripts": {
     "setup-docker": "yarn run docker:build && yarn run docker:up",
     "setup": "bash scripts/install.sh",
-    "build-all": "bash scripts/build-all.sh",
-    "lint": "",
+    "build-all": "yarn run lint && bash scripts/build-all.sh",
+    "lint": "bash scripts/lint.sh",
+    "run-frontend": "cd packages/jse-frontend && yarn run dev",
+    "run-backend": "cd packages/jse-backend && yarn run dev",
+    "run-all": "concurrently \"yarn run-frontend\" \"yarn run-backend\"",
     "clean": "bash scripts/clean.sh",
     "docker:build": "docker-compose -p job-searcher-extension build --no-cache",
     "docker:up": "docker-compose -p job-searcher-extension up -d",
@@ -25,5 +28,8 @@
   "bugs": {
     "url": "https://github.com/SayyidMuhamadA/Job-Searcher-Extension/issues"
   },
-  "homepage": "https://github.com/SayyidMuhamadA/Job-Searcher-Extension#readme"
+  "homepage": "https://github.com/SayyidMuhamadA/Job-Searcher-Extension#readme",
+  "dependencies": {
+    "concurrently": "^7.6.0"
+  }
 }

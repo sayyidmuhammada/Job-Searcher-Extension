@@ -23,6 +23,8 @@ fi
 if [[ $installation_type = "docker" ]]; then 
   echo "Setuping the application using Docker!!"
   yarn run setup-docker
+  echo "✅ Done!"
+  echo "The frontend running on http://localhost:3000"
 else 
   echo "Setuping the application!"
   echo "Going to frontend folder..."
