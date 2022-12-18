@@ -10,7 +10,7 @@
     "lint": "eslint .",
     "lintFix": "eslint . --fix",
     "prettier": "npx prettier --write .",
-    "build": "rm -rf build && webpack & yarn run start",
+    "build": "rm -rf build && webpack && yarn run start",
     "start": "node build/index.js"
   },
   "author": "Sayyid Muhammad A",
