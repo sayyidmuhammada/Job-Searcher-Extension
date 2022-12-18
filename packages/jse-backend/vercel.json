@@ -1,13 +1,14 @@
 {
   "version": 2,
+  "name": "jse-backend-server",
   "builds": [{
-    "src": "./index.ts",
+    "src": "index.ts",
     "use": "@vercel/node"
   }],
   "routes": [
     {
-      "src": "/{.*}",
-      "dest": "/"
+      "src": "/(.*)",
+      "dest": "/index.ts"
     }
   ]
 }
