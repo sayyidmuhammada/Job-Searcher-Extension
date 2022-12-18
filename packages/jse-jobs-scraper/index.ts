@@ -14,7 +14,8 @@ async function scrapeAllJobs(url: string, useDocker: boolean = false): Promise<a
     args: [
       '--no-sandbox',
       '--disable-gpu',
-    ]
+    ],
+    ignoreDefaultArgs: ['--disable-extensions']
   });
   const page = await browser.newPage();
   let maxPages = 10;
