@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "jse-backend-server",
+  "rewrites": [{ "source": "/(.*)", "destination": "/" }],
   "builds": [{
     "src": "package.json",
     "use": "@vercel/node"
