@@ -9,11 +9,11 @@ import { JobsResult } from './types';
 const app = express();
 dotenv.config();
 
-const RUNNING_PORT: number = !process.env.PORT ? 3001 : Number(process.env.PORT);
+const port = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(cors());
-app.listen(RUNNING_PORT, '0.0.0.0', () => console.log(`Running on port ${RUNNING_PORT}`));
+app.listen(port, () => console.log(`Running on port ${port}`));
 
 let result: JobsResult[] = []; // this variable will contain the data that will be taken form indeed(jobs)
 let jobsFromDB: JobsResult = []; // this variable similar to result this variable will contain all jobs that have been added to postgresql if the scraper running to some error
