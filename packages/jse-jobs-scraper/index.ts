@@ -60,10 +60,10 @@ async function scrapeAllJobs(url: string, useDocker: boolean = false): Promise<a
   return allJobsResult;
 }
 
-scrapeJobDetail("557cf744f8aa815c").then(res => console.log(res)) // the argument that i pass is the value of the job detail id
 /*
 Just for testing:
 scrapeAllJobs("https://www.indeed.com/jobs?q=Front+end+engineer").then(res => console.log(res));
+scrapeJobDetail("557cf744f8aa815c").then(res => console.log(res)) // the argument that i pass is the value of the job detail id
 */
 
 export { scrapeAllJobs, scrapeJobDetail };
