@@ -20,7 +20,7 @@ services:
     container_name: backend
     build:
       context: ./packages/jse-backend/
-      dockerfile: Dockerfile.dev # on move to prod, update this
+      dockerfile: Dockerfile # on move to prod, update this
     volumes:
       - ./packages/jse-backend:/jse-backend
     ports:
