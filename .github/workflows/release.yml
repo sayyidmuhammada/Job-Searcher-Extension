@@ -1,13 +1,17 @@
-name: Release npm package
+name: Release on merge
 
 on:
-  push:
+  pull_request:
+    types: 
+      - closed
     branches:
       - main
 
+
 jobs:
   release:
-    name: Release
+    name: Release on merge
+    if: ${{ github.event.pull_request.merged == true }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
