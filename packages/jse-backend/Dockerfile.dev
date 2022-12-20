@@ -19,8 +19,6 @@ COPY package.json ./
 
 # Install deps for server.
 RUN yarn install
-RUN yarn global add puppeteer
-RUN yarn add puppeteer
 
 ENV LISTEN_PORT=8080
 ENV USE_DOCKER=true
