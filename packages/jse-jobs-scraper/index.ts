@@ -1,25 +1,19 @@
-import { Page, executablePath } from 'puppeteer';
-import puppeteer from 'puppeteer-extra';
-import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+import { chromium, Browser, Page } from "playwright";
 import scrapeJobDetail from './scrapeJobDetail';
 import { AllJobsResult, result } from './types';
-puppeteer.use(StealthPlugin());
 
 let allJobsResult: AllJobsResult[] = [];
+
 async function scrapeAllJobs(url: string, useDocker: boolean = false): Promise<any> {
   console.log("\u2714 ", url);
-  const browser = await puppeteer.launch({
-    headless: true,
-    executablePath: useDocker ? '/usr/bin/chromium-browser' : executablePath(),
-    args: [
-      '--no-sandbox',
-      '--disable-gpu',
-    ],
-    ignoreDefaultArgs: ['--disable-extensions']
+  const browser: Browser = await chromium.launch();
+  const context = await browser.newContext({
+    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'
   });
-  const page = await browser.newPage();
+  const page = await context.newPage();
   let maxPages = 10;
-  await page.goto(url, { waitUntil: "domcontentloaded" });
+  await page.goto(url);
+  await page.waitForLoadState("domcontentloaded");
 
   const getAllJobs = async (page : Page) => {
     return await page.evaluate(() => {
@@ -66,9 +60,9 @@ async function scrapeAllJobs(url: string, useDocker: boolean = false): Promise<a
   return allJobsResult;
 }
 
+scrapeAllJobs("https://www.indeed.com/jobs?q=Front+end+engineer").then(res => console.log(res));
 /*
 Just for testing:
-scrapeAllJobs("https://www.indeed.com/jobs?q=Front+end+engineer").then(res => console.log(res));
 scrapeJobDetail("557cf744f8aa815c").then(res => console.log(res)) // the argument that i pass is the value of the job detail id
 */
 
