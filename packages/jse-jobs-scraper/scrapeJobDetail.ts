@@ -1,11 +1,10 @@
 import cheerio from 'cheerio';
-import { chromium, Browser, Page } from "playwright";
+import { webkit } from 'playwright-webkit';
+
 
 async function scrapeJobDetail(jobId: any) {
-    const browser: Browser = await chromium.launch();
-  const context = await browser.newContext({
-    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36'
-  });
+  const browser = await webkit.launch();
+  const context = await browser.newContext();
   const page = await context.newPage();
   await page.goto(`https://www.indeed.com/viewjob?jk=${jobId}`);
 
