@@ -1,48 +1,30 @@
-version: "3"
+version: "3.8"
 
 services:
-  db:
-    container_name: db
-    image: postgres:latest
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-3muhammad3}
-      POSTGRES_DB: ${POSTGRES_DB:-jse_server}
-      PGDATA: /var/lib/postgresql/data
-    volumes:
-      - ./pgdata:/var/lib/postgresql/data
-    ports:
-      - 5423:5423
-    networks:
-      - db
-    restart: unless-stopped
   backend:
     container_name: backend
     build:
       context: ./packages/jse-backend/
       dockerfile: Dockerfile # on move to prod, update this
+    environment:
+      - PGHOST=ep-green-block-875072.us-east-2.aws.neon.tech
+      - PGDATABASE=neondb
+      - PGUSER=sayyidmuhammada
+      - PGPASSWORD=KaABOCjbn29L
+      - ENDPOINT_ID=ep-green-block-875072
+      - USE_DOCKER=false
     volumes:
       - ./packages/jse-backend:/jse-backend
     ports:
       - 8080:8080
-    depends_on:
-      - db
-    networks:
-      - db
     restart: unless-stopped
   frontend:
     container_name: frontend
     build:
       context: ./packages/jse-frontend/
-      dockerfile: Dockerfile.dev # on move to prod, update this
+      dockerfile: Dockerfile # on move to prod, update this
     volumes:
       - ./packages/jse-frontend:/jse-frontend
     ports:
       - 3000:3000
-    depends_on:
-      - db
     restart: always
-
-networks:
-  db:
-    driver: bridge
