@@ -1,4 +1,4 @@
-import { webkit } from 'playwright-webkit';
+import { chromium, Browser, Page } from 'playwright';
 import scrapeJobDetail from './scrapeJobDetail';
 import { AllJobsResult, result } from './types';
 
@@ -9,14 +9,17 @@ async function scrapeAllJobs(
   useDocker: boolean = false
 ): Promise<any> {
   console.log('\u2714 ', url);
-  const browser = await webkit.launch();
-  const context = await browser.newContext();
+  const browser: Browser = await chromium.launch();
+  const context = await browser.newContext({
+    userAgent:
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36',
+  });
   const page = await context.newPage();
   let maxPages = 10;
   await page.goto(url);
   await page.waitForLoadState('domcontentloaded');
 
-  const getAllJobs = async (page: any) => {
+  const getAllJobs = async (page: Page) => {
     return await page.evaluate(() => {
       let result: result[] = [];
       let jobsList = document.querySelectorAll(
@@ -102,10 +105,12 @@ async function scrapeAllJobs(
   return allJobsResult;
 }
 
+scrapeJobDetail("557cf744f8aa815c").then(res => console.log(res)) // the argument that i pass is the value of the job detail id
+scrapeAllJobs('https://www.indeed.com/jobs?q=Front+end+engineer').then((res) =>
+  console.log(res)
+);
 /*
 Just for testing:
-scrapeAllJobs('https://www.indeed.com/jobs?q=Front+end+engineer').then((res) => console.log(res));
-scrapeJobDetail("557cf744f8aa815c").then(res => console.log(res)) // the argument that i pass is the value of the job detail id
 */
 
 export { scrapeAllJobs, scrapeJobDetail };
