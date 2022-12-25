@@ -16,10 +16,10 @@ jobs:
           node-version: '16'
       - name: Install dependencies
         working-directory: packages/jse-backend
-        run: yarn install --frozen-lockfile
+        run: npm ci
       - name: Build
         working-directory: packages/jse-backend
-        run: yarn build
+        run: npm build
         - name: Install Railway
         working-directory: packages/jse-backend
         run: npm i -g @railway/cli
