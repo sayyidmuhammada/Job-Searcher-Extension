@@ -1,0 +1,26 @@
+name: Deploy backend
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: Deploy backend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: cd packages/jse-backend && yarn install --frozen-lockfile
+      - name: Build
+        run: yarn build
+        - name: Install Railway
+        run: npm i -g @railway/cli
+      - name: Deploy the backend
+        run: railway up
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
