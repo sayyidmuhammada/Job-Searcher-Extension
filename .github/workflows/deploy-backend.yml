@@ -9,6 +9,9 @@ jobs:
   deploy:
     name: Deploy backend
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./packages/jse-backend/
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -16,15 +19,11 @@ jobs:
           node-version: '16'
       - name: Install dependencies
         run: npm ci
-        working-directory: packages/jse-backend
       - name: Build
         run: npm build
-        working-directory: packages/jse-backend
-        - name: Install Railway
+      - name: Install Railway
         run: npm i -g @railway/cli
-        working-directory: packages/jse-backend
       - name: Deploy the backend
         run: railway up
-        working-directory: packages/jse-backend
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
