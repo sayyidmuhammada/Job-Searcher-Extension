@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build
-        run: npm build
+        run: npm run build
       - name: Install Railway
         run: npm i -g @railway/cli
       - name: Deploy the backend
