@@ -6,13 +6,13 @@
     "doc": "docs"
   },
   "scripts": {
-    "setup-docker": "yarn run docker:build && yarn run docker:up",
+    "setup:docker": "yarn run docker:build && yarn run docker:up",
     "setup": "bash scripts/install.sh",
-    "build-all": "yarn run lint && bash scripts/build-all.sh",
+    "build": "yarn run lint && bash scripts/build-all.sh",
     "lint": "bash scripts/lint.sh",
-    "run-frontend": "cd packages/jse-frontend && yarn run dev",
-    "run-backend": "cd packages/jse-backend && yarn run dev",
-    "start": "concurrently \"yarn run-frontend\" \"yarn run-backend\"",
+    "run:frontend": "cd packages/jse-frontend && yarn run dev",
+    "run:backend": "cd packages/jse-backend && yarn run dev",
+    "dev": "concurrently \"yarn run-frontend\" \"yarn run-backend\"",
     "clean": "bash scripts/clean.sh",
     "docker:build": "docker-compose -p job-searcher-extension build --no-cache",
     "docker:up": "docker-compose -p job-searcher-extension up -d",
