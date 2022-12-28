@@ -80,7 +80,7 @@ if [[ $choice_setup == "1" || $choice_setup == "" ]]; then
   installation_type='docker'
   echo -e "\n✅ ${CYAN}You have chosen: Docker 🐟\n"
 else
-  setup_type='not_using_docker'
+  installation_type='not_using_docker'
   echo -e "\n✅ ${CYAN} You have chosen: not using docker\n"
 fi
 
